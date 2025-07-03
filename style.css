@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInDown 1.2s 0.5s ease-out forwards;
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4.5rem;
+  margin-bottom: 10px;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: #e0e0ff;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.cake-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  margin: 0 auto;
+  perspective: 1000px;
+  z-index: 5;
+}
+
+.cake-float {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(600px) rotateX(15deg);
+  animation: floatUp 2s 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+.layer-bottom {
+  width: 280px;
+  height: 80px;
+  bottom: 0;
+  background: linear-gradient(to bottom, #f5e5c0, #e0a944);
+  z-index: 1;
+  animation: wobble 6s infinite ease-in-out;
+}
+
+.layer-middle {
+  width: 230px;
+  height: 70px;
+  bottom: 70px;
+  background: linear-gradient(to bottom, #e0a944, #d08a42);
+  z-index: 2;
+  animation: wobble 5s infinite ease-in-out;
+}
+
+.layer-top {
+  width: 180px;
+  height: 60px;
+  bottom: 130px;
+  background: linear-gradient(to bottom, #d08a42, #b56c32);
+  z-index: 3;
+  animation: wobble 4s infinite ease-in-out;
+}
+
+.icing {
+  position: absolute;
+  background: #f8d7da;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.icing-top {
+  width: 200px;
+  height: 30px;
+  bottom: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icing-dots {
+  width: 15px;
+  height: 15px;
+  background: #ff9aa2;
+}
+
+.dot-1 { bottom: 175px; left: 30%; }
+.dot-2 { bottom: 165px; left: 45%; }
+.dot-3 { bottom: 175px; left: 60%; }
+
+.candle {
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  border-radius: 10px;
+  position: absolute;
+  bottom: 190px;
+  left: 50%;
+  margin-left: -2.5px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  z-index: 5;
+  animation: dropIn 1.2s 2.8s ease-out forwards;
+}
+
+.candle::after,
+.candle::before {
+  background: rgba(255, 0, 0, 0.4);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.5px;
+}
+
+.candle::after {
+  top: 25%;
+}
+
+.candle::before {
+  top: 45%;
+}
+
+.flame-container {
+  position: absolute;
+  bottom: 225px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  z-index: 6;
+  opacity: 0;
+  animation: fadeIn 0.5s 4s forwards;
+}
+
+.fire {
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 22px;
+}
+
+.fire:nth-child(1) { animation: fire 2s 4.2s infinite; }
+.fire:nth-child(2) { animation: fire 1.5s 4.2s infinite; }
+.fire:nth-child(3) { animation: fire 1s 4.2s infinite; }
+.fire:nth-child(4) { animation: fire 0.5s 4.2s infinite; }
+.fire:nth-child(5) { animation: fire 0.2s 4.2s infinite; }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  opacity: 0;
+  animation: fadeIn 1s 5s forwards;
+  z-index: 10;
+}
+
+.wish-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  text-decoration: none;
+  padding: 18px 40px;
+  border-radius: 50px;
+  box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.4s ease;
+  font-family: 'Dancing Script', cursive;
+  transform: translateY(20px);
+  animation: floatButton 2s 5.2s infinite ease-in-out;
+}
+
+.wish-button:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+  background: linear-gradient(45deg, #ff5252, #ff7b7b);
+}
+
+.wish-button::before {
+  content: "✨";
+  margin-right: 12px;
+  font-size: 1.5rem;
+}
+
+.decoration {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(254, 248, 97, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(254, 248, 97, 0.8);
+  animation: twinkle 3s infinite alternate;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: floatBubble 15s infinite linear;
+  z-index: 0;
+}
+
+/* Animations */
+@keyframes floatUp {
+  0% { transform: translateY(600px) rotateX(15deg); }
+  70% { transform: translateY(-50px) rotateX(5deg); }
+  100% { transform: translateY(0) rotateX(0); }
+}
+
+@keyframes dropIn {
+  to { transform: translateY(0); }
+}
+
+@keyframes fire {
+  0%, 100% {
+    background: rgba(254, 248, 97, 0.7);
+    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.4);
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    background: rgba(255, 100, 0, 0.4);
+    box-shadow: 0 0 50px 20px rgba(248, 233, 209, 0.5);
+    transform: translateX(-50%) translateY(-10px) scale(1.1);
+  }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: translateX(-50%) rotate(0.5deg); }
+  50% { transform: translateX(-50%) rotate(-0.5deg); }
+}
+
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes floatBubble {
+  0% { transform: translateY(100vh) scale(0.2); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.1; }
+  100% { transform: translateY(-100px) scale(1); opacity: 0; }
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+
+  .cake-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .layer-bottom {
+    width: 240px;
+  }
+
+  .layer-middle {
+    width: 200px;
+  }
+
+  .layer-top {
+    width: 160px;
+  }
+
+  .wish-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+  }
+}

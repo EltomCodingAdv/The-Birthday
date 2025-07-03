@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Birthday Cake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Background decorations -->
+    <div class="decoration" style="top: 10%; left: 15%;"></div>
+    <div class="decoration" style="top: 20%; right: 20%; animation-delay: 1s;"></div>
+    <div class="decoration" style="bottom: 30%; left: 25%; animation-delay: 2s;"></div>
+    <div class="decoration" style="bottom: 15%; right: 30%; animation-delay: 1.5s;"></div>
+    
+    <!-- Floating bubbles -->
+    <div class="bubble" style="width: 40px; height: 40px; left: 10%; animation-duration: 18s; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 25px; height: 25px; left: 25%; animation-duration: 15s; animation-delay: 3s;"></div>
+    <div class="bubble" style="width: 35px; height: 35px; right: 15%; animation-duration: 20s; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 30px; height: 30px; right: 30%; animation-duration: 16s; animation-delay: 4s;"></div>
+    
+    <div class="header">
+        <h1>Happy Birthday Mellandrè </h1>
+        <p class="subtitle">Watch as this magical cake floats in with glowing candles to celebrate your special day!</p>
+    </div>
+    
+    <div class="cake-container">
+        <div class="cake-float">
+            <!-- Cake layers -->
+            <div class="cake-layer layer-bottom"></div>
+            <div class="cake-layer layer-middle"></div>
+            <div class="cake-layer layer-top"></div>
+            
+            <!-- Decorative icing -->
+            <div class="icing icing-top"></div>
+            <div class="icing icing-dots dot-1"></div>
+            <div class="icing icing-dots dot-2"></div>
+            <div class="icing icing-dots dot-3"></div>
+            
+            <!-- Candle -->
+            <div class="candle"></div>
+            
+            <!-- Flames -->
+            <div class="flame-container">
+                <div class="fire"></div>
+                <div class="fire"></div>
+                <div class="fire"></div>
+                <div class="fire"></div>
+                <div class="fire"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <a href="Fish With Text.html" class="wish-button">Make a Wish</a>
+    </div>
+    
+    <div class="footer">
+        Created By Elton with Love ❤️ 
+    </div>
+
+    <script>
+        // Add interactive candle blow effect
+        document.querySelector('.candle').addEventListener('click', function() {
+            const flameContainer = document.querySelector('.flame-container');
+            flameContainer.style.animation = 'none';
+            
+            // Create extinguishing effect
+            const smoke = document.createElement('div');
+            smoke.style.position = 'absolute';
+            smoke.style.bottom = '225px';
+            smoke.style.left = '50%';
+            smoke.style.width = '30px';
+            smoke.style.height = '30px';
+            smoke.style.background = 'rgba(200, 200, 200, 0.7)';
+            smoke.style.borderRadius = '50%';
+            smoke.style.transform = 'translateX(-50%) scale(0)';
+            smoke.style.animation = 'extinguish 1.5s forwards';
+            document.querySelector('.cake-container').appendChild(smoke);
+            
+            // Remove after animation
+            setTimeout(() => {
+                smoke.remove();
+            }, 1500);
+            
+            // Hide flames
+            flameContainer.style.opacity = '0';
+        });
+        
+        // Add CSS for extinguishing animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes extinguish {
+                0% { transform: translateX(-50%) scale(0); opacity: 1; }
+                50% { transform: translateX(-50%) scale(3); opacity: 0.5; }
+                100% { transform: translateX(-50%) scale(5); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

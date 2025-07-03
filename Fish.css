@@ -1,0 +1,144 @@
+/* Reset and global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Georgia', serif;
+    background: #001f3f;
+    overflow: hidden;
+}
+
+/* Ocean background */
+.ocean {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #003366 0%, #001f3f 100%);
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Poem styling */
+.poem {
+    color: #e0f7fa;
+    text-align: center;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.poem h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.poem p {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* Fish styling */
+.fish {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    background: orange;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: scaleX(-1);
+    z-index: 1;
+}
+
+/* Tail (pseudo-element) */
+.fish::after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    width: 15px;
+    height: 10px;
+    background: orange;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Fish animations */
+.fish1 {
+    top: 20%;
+    animation: swim-left 12s linear infinite;
+}
+
+.fish2 {
+    top: 50%;
+    animation: swim-right 15s linear infinite;
+    background: yellow;
+}
+
+.fish3 {
+    top: 75%;
+    animation: swim-left 20s linear infinite;
+    background: pink;
+}
+
+@keyframes swim-left {
+    from { left: 100%; transform: scaleX(-1); }
+    to { left: -60px; transform: scaleX(-1); }
+}
+
+@keyframes swim-right {
+    from { left: -60px; transform: scaleX(1); }
+    to { left: 100%; transform: scaleX(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .poem h1 {
+        font-size: 2rem;
+    }
+
+    .poem p {
+        font-size: 1rem;
+    }
+
+    .fish {
+        width: 40px;
+        height: 24px;
+    }
+
+    .fish::after {
+        width: 12px;
+        height: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .poem h1 {
+        font-size: 1.5rem;
+    }
+
+    .poem p {
+        font-size: 0.9rem;
+    }
+
+    .fish {
+        width: 30px;
+        height: 18px;
+    }
+
+    .fish::after {
+        width: 10px;
+        height: 7px;
+    }
+}
